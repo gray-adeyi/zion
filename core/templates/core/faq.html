@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ webinfo.name }}</title>
+</head>
+<body>
+    <h1>Frequently Asked Questions</h1>
+    <ul>
+        {% for faq in faqs %}
+            <li><b>{{ faq.question }}</b><br>{{ faq.answer }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

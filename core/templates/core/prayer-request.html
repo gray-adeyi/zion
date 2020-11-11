@@ -1,0 +1,57 @@
+{% extends 'core/site-base.html' %}
+
+{% block title %}
+Send prayer request |
+{% endblock title %}
+
+{% block contents %}
+<div class="container">
+    <br><br>
+    <div class="row">
+        <div class="col-md-3 col-sm-12"></div>
+        <div class="col-md-6 col-sm-12">
+            <div class="card">
+                <div class="card-contents">
+                    <div class="card-header">
+                        <h1>Send Prayer Request</h1>
+                        {% for message in messages %}
+                        <p class="alert-{{ message.tags }}">{{ message }}</p>
+                        {% endfor %}
+                        {% if form.errors %}
+                        <p>{{ form.errors }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="(Optional)" value="{{ form.name.value }}">
+                                {% if form.name.errors %}
+                                <p>{{ form.name.error }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Prayer Request</label>
+                                <textarea name="prayer_request" id="" cols="30" rows="10" class="form-control" placeholder="your prayer request here..." value="{{ form.prayer_request.value }}"></textarea>
+                                {% if form.prayer_request.errors %}
+                                <p>{{ form.prayer_request.errors }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary btn-lg" value="Submit">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        {% for message in messages %}
+                        <p class="alert-{{ message.tags }}">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12"></div>
+    </div>
+</div>
+{% endblock contents %}
